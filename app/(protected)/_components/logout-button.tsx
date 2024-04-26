@@ -10,7 +10,7 @@ export default function LogoutButton() {
   return (
     <button
       onClick={() => mutate()}
-      className="flex w-full justify-between gap-1 rounded-md px-2 py-1 outline-none hover:bg-muted"
+      className="flex w-full items-center justify-between gap-1 rounded-md px-2 py-1 outline-none hover:bg-muted"
     >
       Выйти
       <LogOut className="size-4 text-destructive" />

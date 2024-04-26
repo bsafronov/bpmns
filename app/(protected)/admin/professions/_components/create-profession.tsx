@@ -3,14 +3,7 @@
 import { createProfession } from "@/actions/create-profession";
 import { createProfessionSchema } from "@/actions/create-profession/schema";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { DialogController } from "@/components/ui/dialog-controller";
 import { FieldController } from "@/components/ui/field-controller";
 import { FormController } from "@/components/ui/form-controller";
 import { Input } from "@/components/ui/input";
@@ -39,29 +32,27 @@ export default function CreateProfession() {
   const onSubmit = form.handleSubmit((data) => mutate(data));
 
   return (
-    <Dialog open={open} onOpenChange={toggle}>
-      <DialogTrigger asChild>
-        <Button>Создать профессию</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Профессия</DialogTitle>
-          <DialogDescription>Создание профессии</DialogDescription>
-        </DialogHeader>
-        <FormController
-          form={form}
-          submitText="Создать"
-          onSubmit={onSubmit}
-          isLoading={isPending}
-        >
-          <FieldController
-            control={form.control}
-            name="name"
-            label="Название"
-            render={(props) => <Input {...props} />}
-          />
-        </FormController>
-      </DialogContent>
-    </Dialog>
+    <DialogController
+      open={open}
+      onOpenChange={toggle}
+      trigger={<Button>Создать профессию</Button>}
+      title="Профессия"
+      description="Создание профессии"
+    >
+      <FormController
+        form={form}
+        submitText="Создать"
+        onSubmit={onSubmit}
+        isLoading={isPending}
+      >
+        <FieldController
+          control={form.control}
+          name="name"
+          label="Название"
+          required
+          render={(props) => <Input {...props} />}
+        />
+      </FormController>
+    </DialogController>
   );
 }
