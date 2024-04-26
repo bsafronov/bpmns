@@ -3,6 +3,7 @@ import {
   integer,
   pgTable,
   serial,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -12,6 +13,7 @@ import { relations } from "drizzle-orm";
 export const professions = pgTable("professions", {
   id: serial("id").primaryKey(),
   name: varchar("name").notNull().unique(),
+  description: text("description"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -23,7 +25,7 @@ export const professions = pgTable("professions", {
     .notNull()
     .references(() => users.id),
   updatedById: integer("updated_by_id").references(() => users.id),
-  published: boolean("published").default(true),
+  published: boolean("published").notNull().default(true),
 });
 
 export const professionsRelations = relations(professions, ({ one }) => ({

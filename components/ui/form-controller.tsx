@@ -5,6 +5,7 @@ import { type FieldValues, type UseFormReturn } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { cn } from "@/lib/utils";
+import { LoadingButton } from "./loading-button";
 
 type Props<T extends FieldValues> = {
   form: UseFormReturn<T, unknown, undefined>;
@@ -43,9 +44,13 @@ export const FormController = <T extends FieldValues>({
           ) : null}
 
           {onSubmit ? (
-            <Button isLoading={isLoading} className="gap-2" type="submit">
+            <LoadingButton
+              isLoading={isLoading}
+              className="gap-2"
+              type="submit"
+            >
               {submitText}
-            </Button>
+            </LoadingButton>
           ) : null}
         </div>
       </form>

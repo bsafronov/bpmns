@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 type FieldControllerPlacement = "checkbox";
 type FieldControllerProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Pick<
   ComponentPropsWithoutRef<typeof FormField<TFieldValues, TName>>,
   "control" | "name"
@@ -53,7 +53,7 @@ type FieldControllerPlacementList = Partial<
 
 export const FieldController = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   name,
   control,

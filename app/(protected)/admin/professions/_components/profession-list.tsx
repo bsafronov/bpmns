@@ -16,6 +16,7 @@ export const ProfessionList = async () => {
           published,
           updatedAt,
           updatedBy,
+          description,
         }) => (
           <AdminEntityItem
             key={id}
@@ -26,6 +27,7 @@ export const ProfessionList = async () => {
             updatedAt={updatedAt}
             updatedBy={updatedBy}
             published={published}
+            description={description}
           ></AdminEntityItem>
         ),
       )}
