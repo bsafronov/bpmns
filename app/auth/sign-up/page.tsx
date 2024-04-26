@@ -1,7 +1,7 @@
 "use client";
 
-import { signIn } from "@/actions/sign-in";
-import { signInSchema } from "@/actions/sign-in/schema";
+import { signUp } from "@/actions/sign-up";
+import { signUpSchema } from "@/actions/sign-up/schema";
 import {
   Card,
   CardContent,
@@ -16,19 +16,20 @@ import { useZodForm } from "@/lib/use-zod-form";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 export default function Page() {
-  const form = useZodForm(signInSchema, {
+  const router = useRouter();
+  const form = useZodForm(signUpSchema, {
     defaultValues: {
       username: "",
       password: "",
+      re_password: "",
     },
   });
 
   const { mutate } = useMutation({
-    mutationFn: signIn,
-    onSuccess: () => toast.success("Успешный вход!"),
+    mutationFn: signUp,
+    onSuccess: () => router.push("/auth/sign-in"),
   });
 
   const onSubmit = form.handleSubmit((data) => mutate(data));
@@ -36,7 +37,7 @@ export default function Page() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Авторизация</CardTitle>
+        <CardTitle>Регистрация</CardTitle>
       </CardHeader>
       <CardContent>
         <FormController form={form} onSubmit={onSubmit}>
@@ -54,12 +55,19 @@ export default function Page() {
             required
             render={(props) => <Input type="password" {...props} />}
           />
+          <FieldController
+            control={form.control}
+            name="re_password"
+            label="Повторите пароль"
+            required
+            render={(props) => <Input type="password" {...props} />}
+          />
         </FormController>
       </CardContent>
       <CardFooter className="text-xs">
-        Нет аккаунта?&nbsp;
-        <Link href={"/auth/sign-up"} className="text-blue-500 hover:underline">
-          Регистрация
+        Есть аккаунт?&nbsp;
+        <Link href={"/auth/sign-in"} className="text-blue-500 hover:underline">
+          Войти
         </Link>
       </CardFooter>
     </Card>

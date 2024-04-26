@@ -4,13 +4,13 @@ export const signUpSchema = z
   .object({
     username: z.string({ required_error: "Обязательное поле" }),
     password: z.string({ required_error: "Обязательное поле" }),
-    confirmPassword: z.string({ required_error: "Обязательное поле" }),
+    re_password: z.string({ required_error: "Обязательное поле" }),
   })
-  .superRefine(({ password, confirmPassword }, ctx) => {
-    if (password !== confirmPassword) {
+  .superRefine(({ password, re_password }, ctx) => {
+    if (password !== re_password) {
       ctx.addIssue({
         code: "custom",
-        path: ["confirmPassword"],
+        path: ["re_password"],
         message: "Пароли не совпадают",
       });
     }
