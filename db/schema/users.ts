@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import { boolean, pgEnum, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 import { sessions } from "./sessions";
+import { professions } from "./professions";
 
 export const userRoleEnum = pgEnum("role", ["user", "admin"]);
 
@@ -14,4 +15,6 @@ export const users = pgTable("users", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
+  createdProfessions: many(professions, { relationName: "createdBy" }),
+  updatedProfessions: many(professions, { relationName: "updatedBy" }),
 }));
