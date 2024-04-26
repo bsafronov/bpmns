@@ -1,5 +1,7 @@
+import { Container } from "@/components/ui/container";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { AsideNavbar } from "./_components/aside-navbar";
 
 export default async function Layout({
   children,
@@ -12,5 +14,10 @@ export default async function Layout({
     return redirect("/auth/sign-in");
   }
 
-  return <>{children}</>;
+  return (
+    <Container className="mt-4 flex gap-4">
+      <AsideNavbar />
+      <main className="grow">{children}</main>
+    </Container>
+  );
 }
