@@ -6,8 +6,8 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { FileIcon, LayoutDashboard } from "lucide-react";
-import Link from "next/link";
 import UserMenu from "./user-menu";
+import Link from "@/components/ui/link";
 
 const linkClassName =
   "flex items-center gap-1 rounded-md px-2 py-1 hover:bg-muted";
@@ -27,11 +27,19 @@ export function AsideNavbar() {
               </div>
             </AccordionTrigger>
             <AccordionContent className="pl-4">
-              <Link href="/admin/templates" className={linkClassName}>
+              <Link
+                href="/admin/templates"
+                className={linkClassName}
+                activeClassName="text-blue-500"
+              >
                 <FileIcon className="size-4" />
                 Шаблоны
               </Link>
-              <Link href="/admin/professions" className={linkClassName}>
+              <Link
+                href="/admin/professions"
+                className={linkClassName}
+                activeClassName="text-blue-500"
+              >
                 <FileIcon className="size-4" /> Профессии
               </Link>
             </AccordionContent>
@@ -40,6 +48,7 @@ export function AsideNavbar() {
         <Link
           href="/admin/processes"
           className="flex items-center gap-1 rounded-md px-2 py-1 hover:bg-muted"
+          activeClassName="text-blue-500"
         >
           <FileIcon className="size-4" />
           Процессы

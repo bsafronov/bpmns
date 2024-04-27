@@ -78,7 +78,7 @@ export default function AdminEntityItem({
               </AvatarFallback>
             </Avatar>
           </Link>
-          {updatedBy && <span>{getRelativeDate(updatedAt)}</span>}
+          {updatedBy && <span>{getRelativeDate(updatedAt)} (изменено)</span>}
           {!updatedBy && <span>{getRelativeDate(createdAt)}</span>}
         </div>
         {published === true && <Badge variant={"success"}>Опубликовано</Badge>}

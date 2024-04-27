@@ -15,7 +15,7 @@ export default async function Layout({
   }
 
   return (
-    <Container className="mt-4 flex items-start gap-4">
+    <Container className="mt-4 flex items-start gap-2">
       <AsideNavbar />
       <main className="grow">{children}</main>
     </Container>

@@ -52,7 +52,7 @@ export const UpdateProfessionForm = ({ profession }: Props) => {
         control={form.control}
         name="description"
         label="Описание"
-        render={(props) => <Textarea {...props} />}
+        render={(props) => <Textarea minRows={5} {...props} />}
       />
       <FieldController
         control={form.control}
