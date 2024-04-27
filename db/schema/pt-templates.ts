@@ -9,13 +9,16 @@ import {
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 import { relations } from "drizzle-orm";
-import { ptStagesToProfessions } from "./pt-stages-to-professions";
+import { ptStages } from "./pt-stages";
+import { ptFields } from "./pt-fields";
+import { ptNodes } from "./pt-nodes";
+import { ptEdges } from "./pt-edges";
 
-export const professions = pgTable("professions", {
+export const ptTemplates = pgTable("pt_templates", {
   id: serial("id").primaryKey(),
   name: varchar("name").notNull().unique(),
   description: text("description"),
-  published: boolean("published").notNull().default(true),
+  published: boolean("published").notNull().default(false),
 
   // LOGS
   createdAt: timestamp("created_at", { withTimezone: true })
@@ -31,15 +34,18 @@ export const professions = pgTable("professions", {
   updatedById: integer("updated_by_id").references(() => users.id),
 });
 
-export const professionsRelations = relations(professions, ({ one, many }) => ({
-  ptStagesToProfessions: many(ptStagesToProfessions),
+export const ptTemplatesRelations = relations(ptTemplates, ({ one, many }) => ({
+  ptStages: many(ptStages),
+  ptFields: many(ptFields),
+  ptNodes: many(ptNodes),
+  ptEdges: many(ptEdges),
   createdBy: one(users, {
-    fields: [professions.createdById],
+    fields: [ptTemplates.createdById],
     references: [users.id],
     relationName: "createdBy",
   }),
   updatedBy: one(users, {
-    fields: [professions.updatedById],
+    fields: [ptTemplates.updatedById],
     references: [users.id],
     relationName: "updatedBy",
   }),

@@ -25,3 +25,7 @@ export function parseIds<T extends Record<string, string>>(
 
   return result;
 }
+
+export function getInitials(input: string) {
+  return input.slice(0, 2).toUpperCase();
+}

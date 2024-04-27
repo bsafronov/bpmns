@@ -9,9 +9,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 import { relations } from "drizzle-orm";
-import { ptStagesToProfessions } from "./pt-stages-to-professions";
 
-export const professions = pgTable("professions", {
+export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: varchar("name").notNull().unique(),
   description: text("description"),
@@ -31,15 +30,14 @@ export const professions = pgTable("professions", {
   updatedById: integer("updated_by_id").references(() => users.id),
 });
 
-export const professionsRelations = relations(professions, ({ one, many }) => ({
-  ptStagesToProfessions: many(ptStagesToProfessions),
+export const productsRelations = relations(products, ({ one, many }) => ({
   createdBy: one(users, {
-    fields: [professions.createdById],
+    fields: [products.createdById],
     references: [users.id],
     relationName: "createdBy",
   }),
   updatedBy: one(users, {
-    fields: [professions.updatedById],
+    fields: [products.updatedById],
     references: [users.id],
     relationName: "updatedBy",
   }),
