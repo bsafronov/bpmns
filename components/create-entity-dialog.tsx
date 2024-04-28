@@ -15,21 +15,25 @@ const schema = z.object({
   name: z.string({ required_error: "Обязательное поле" }),
 });
 
-type Props = {
-  action: (name: string) => Promise<void>;
+type CreateEntityProps = Record<string, unknown> & z.infer<typeof schema>;
+
+type Props<T extends CreateEntityProps> = {
+  args: Omit<T, "name">;
+  action: (values: T) => Promise<void>;
   triggerTitle: string;
   successMessage?: string;
   title?: string;
   description?: string;
 };
 
-export default function CreateEntityDialog({
+export default function CreateEntityDialog<T extends CreateEntityProps>({
   action,
   successMessage,
   title,
   description,
   triggerTitle,
-}: Props) {
+  args,
+}: Props<T>) {
   const { value: open, toggle } = useBoolean();
 
   const form = useZodForm(schema, {
@@ -50,7 +54,9 @@ export default function CreateEntityDialog({
     },
   });
 
-  const onSubmit = form.handleSubmit((data) => mutate(data.name));
+  const onSubmit = form.handleSubmit((data) =>
+    mutate({ ...data, ...args } as T),
+  );
 
   return (
     <DialogController
