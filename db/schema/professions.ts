@@ -10,6 +10,7 @@ import {
 import { users } from "./users";
 import { relations } from "drizzle-orm";
 import { ptStagesToProfessions } from "./pt-stages-to-professions";
+import { usersToProfessions } from "./users-to-professions";
 
 export const professions = pgTable("professions", {
   id: serial("id").primaryKey(),
@@ -33,6 +34,7 @@ export const professions = pgTable("professions", {
 
 export const professionsRelations = relations(professions, ({ one, many }) => ({
   ptStagesToProfessions: many(ptStagesToProfessions),
+  usersToProfessions: many(usersToProfessions),
   createdBy: one(users, {
     fields: [professions.createdById],
     references: [users.id],

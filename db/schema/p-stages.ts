@@ -13,7 +13,7 @@ export const pStages = pgTable("p_stages", {
     .notNull(),
 });
 
-export const pFieldsRelations = relations(pStages, ({ one, many }) => ({
+export const pStagesRelations = relations(pStages, ({ one, many }) => ({
   ptStage: one(ptStages, {
     fields: [pStages.ptStageId],
     references: [ptStages.id],

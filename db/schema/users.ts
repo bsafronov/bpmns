@@ -7,6 +7,7 @@ import { products } from "./products";
 import { ptStages } from "./pt-stages";
 import { ptFields } from "./pt-fields";
 import { pProcesses } from "./p-processes";
+import { usersToProfessions } from "./users-to-professions";
 
 export const userRoleEnum = pgEnum("role", ["user", "admin"]);
 
@@ -20,6 +21,7 @@ export const users = pgTable("users", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
+  usersToProfessions: many(usersToProfessions),
   createdProfessions: many(professions, { relationName: "createdBy" }),
   updatedProfessions: many(professions, { relationName: "updatedBy" }),
   createdProducts: many(products, { relationName: "createdBy" }),
