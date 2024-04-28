@@ -4,7 +4,7 @@ import Link from "./ui/link";
 
 type Props = {
   baseUrl: string;
-  links: NavLink[];
+  links?: NavLink[];
   children?: React.ReactNode;
 };
 
@@ -13,7 +13,7 @@ export default function AdminEntityMenu({ baseUrl, links, children }: Props) {
     <Card className="flex">
       <div className="flex min-w-[200px] flex-col border-r p-1 text-sm">
         <AdminEntityMenuLink href={baseUrl} title="Общая информация" />
-        {links.map(({ href, title, icon }) => (
+        {links?.map(({ href, title, icon }) => (
           <AdminEntityMenuLink
             key={href}
             href={baseUrl + href}

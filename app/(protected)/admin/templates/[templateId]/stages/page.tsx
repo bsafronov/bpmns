@@ -31,7 +31,11 @@ export default async function Page({ params }: Props) {
       </div>
       <EntityList>
         {stages.map((stage) => (
-          <AdminEntityItem key={stage.id} {...stage} />
+          <AdminEntityItem
+            key={stage.id}
+            {...stage}
+            href={`/admin/pt-stages/${stage.id}`}
+          />
         ))}
       </EntityList>
     </div>

@@ -21,8 +21,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <QueryProvider>
-          <Toaster richColors />
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Toaster richColors />
+            {children}
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>
