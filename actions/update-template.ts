@@ -4,8 +4,8 @@ import { db } from "@/db";
 import { ptTemplates } from "@/db/schema";
 import { UpdateEntitySchema } from "@/lib/schema/update-entity";
 import { revalidatePath } from "next/cache";
-import { adminAuth } from "./admin-auth";
 import { eq } from "drizzle-orm";
+import { adminAuth } from "./auth";
 
 export default async function updateTemplate({
   name,

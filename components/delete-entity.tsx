@@ -1,40 +1,46 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "./ui/alert-dialog";
-import { Button } from "./ui/button";
+"use client";
 
-export default function DeleteEntity() {
+import { useMutation } from "@tanstack/react-query";
+import AlertDialogController from "./ui/alert-dialog-controller";
+import { Button } from "./ui/button";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { LoadingButton } from "./ui/loading-button";
+
+type Props = {
+  id: ID;
+  action: (id: ID) => Promise<void>;
+  redirectUrl: string;
+};
+
+export default function DeleteEntity({ action, id, redirectUrl }: Props) {
+  const router = useRouter();
+  const { mutate, isPending } = useMutation({
+    mutationFn: action,
+    onSuccess: () => {
+      {
+        redirectUrl && router.push(redirectUrl);
+      }
+    },
+    onError: (e) => toast.error(e.message),
+  });
+
   return (
     <div className="divide-y divide-dashed divide-destructive/25 rounded-md border border-dashed border-destructive/50 bg-destructive/15 text-sm">
       <div className="flex items-center justify-between px-4 py-2">
         <span>Удаление сущности</span>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant={"destructive"} size={"sm"}>
+        <AlertDialogController
+          onSubmit={() => mutate(id)}
+          trigger={
+            <LoadingButton
+              variant={"destructive"}
+              size={"sm"}
+              isLoading={isPending}
+            >
               Удалить
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Вы уверены?</AlertDialogTitle>
-              <AlertDialogDescription>
-                Это действие нельзя будет отменить!
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Отмена</AlertDialogCancel>
-              <AlertDialogAction>Подтвердить</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+            </LoadingButton>
+          }
+        />
       </div>
     </div>
   );

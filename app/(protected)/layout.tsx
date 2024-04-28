@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/container";
-import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { AsideNavbar } from "./_components/aside-navbar";
+import { getSession } from "@/actions/get-session";
 
 export default async function Layout({
   children,

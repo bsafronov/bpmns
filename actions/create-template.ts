@@ -2,8 +2,8 @@
 
 import { db } from "@/db";
 import { ptTemplates } from "@/db/schema";
-import { adminAuth } from "./admin-auth";
 import { revalidatePath } from "next/cache";
+import { adminAuth } from "./auth";
 
 export default async function createTemplate(name: string) {
   const user = await adminAuth();
