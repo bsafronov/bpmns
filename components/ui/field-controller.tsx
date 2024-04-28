@@ -81,10 +81,16 @@ const placementList: FieldControllerPlacementList = {
     </FormItem>
   ),
   checkbox: ({ children, className, description, label, required }) => (
-    <FormItem className={cn("flex gap-2 space-y-0", className)}>
-      <FormControl>{children}</FormControl>
+    <FormItem className={className}>
+      <div className="flex items-start gap-2">
+        <FormControl>{children}</FormControl>
+        {label && (
+          <FormLabel required={required} className="mt-[1px]">
+            {label}
+          </FormLabel>
+        )}
+      </div>
       <div className="flex flex-col">
-        {label && <FormLabel required={required}>{label}</FormLabel>}
         {description && <FormDescription>{description}</FormDescription>}
         <FormMessage />
       </div>

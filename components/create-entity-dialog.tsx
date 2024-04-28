@@ -38,7 +38,7 @@ export default function CreateEntityDialog({
     },
   });
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: action,
     onSuccess: () => {
       form.reset();
@@ -60,7 +60,12 @@ export default function CreateEntityDialog({
       description={description}
       trigger={<Button>{triggerTitle}</Button>}
     >
-      <FormController form={form} onSubmit={onSubmit} submitText="Создать">
+      <FormController
+        form={form}
+        onSubmit={onSubmit}
+        submitText="Создать"
+        isLoading={isPending}
+      >
         <FieldController
           control={form.control}
           name="name"

@@ -12,9 +12,14 @@ export default function AdminEntityMenu({ baseUrl, links, children }: Props) {
   return (
     <Card className="flex">
       <div className="flex min-w-[200px] flex-col border-r p-1 text-sm">
-        <AdminEntityMenuLink href={baseUrl} title="Основная информация" />
-        {links.map((item) => (
-          <AdminEntityMenuLink key={item.href} {...item} />
+        <AdminEntityMenuLink href={baseUrl} title="Общая информация" />
+        {links.map(({ href, title, icon }) => (
+          <AdminEntityMenuLink
+            key={href}
+            href={baseUrl + href}
+            title={title}
+            icon={icon}
+          />
         ))}
         <AdminEntityMenuLink href={`${baseUrl}/settings`} title="Настройки" />
       </div>

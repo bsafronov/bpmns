@@ -3,6 +3,8 @@ import { parseIds } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { UpdateProfessionForm } from "./_components/update-profession-form";
 import AdminEntityModerationInfo from "@/components/admin-entity-moderation-info";
+import UpdateEntityForm from "@/components/update-entity-form";
+import updateProfession from "@/actions/update-profession";
 
 type Props = {
   params: {
@@ -19,7 +21,15 @@ export default async function Page({ params }: Props) {
     return notFound();
   }
 
-  const { createdAt, createdBy, updatedAt, updatedBy } = profession;
+  const {
+    createdAt,
+    createdBy,
+    updatedAt,
+    updatedBy,
+    name,
+    published,
+    description,
+  } = profession;
 
   return (
     <>
@@ -29,7 +39,15 @@ export default async function Page({ params }: Props) {
         updatedAt={updatedAt}
         updatedBy={updatedBy}
       />
-      <UpdateProfessionForm profession={profession} />
+      <UpdateEntityForm
+        action={updateProfession}
+        initialValues={{
+          name,
+          description,
+          published,
+          id: professionId,
+        }}
+      />
     </>
   );
 }

@@ -8,37 +8,38 @@ import { ArrowLeft } from "lucide-react";
 
 type Props = {
   params: {
-    professionId: string;
+    templateId: string;
   };
   children?: React.ReactNode;
 };
 
 const links: NavLink[] = [
   {
-    href: "/users",
-    title: "Пользователи",
+    href: "/fields",
+    title: "Поля",
+  },
+  {
+    href: "/stages",
+    title: "Этапы",
   },
 ];
 
 export default function Layout({ children, params }: Props) {
-  const { professionId } = parseIds(params);
+  const { templateId } = parseIds(params);
 
   return (
     <>
       <Button asChild size={"sm"} variant={"ghost"}>
         <Link
-          href={"/admin/professions"}
+          href={"/admin/templates"}
           className="gap-1"
           activeClassName="text-blue-500"
         >
-          <ArrowLeft className="size-4" />К профессиям
+          <ArrowLeft className="size-4" />К шаблонам
         </Link>
       </Button>
-      <PageHeader title="Профессия" description="Управление профессиями" />
-      <AdminEntityMenu
-        baseUrl={`/admin/professions/${professionId}`}
-        links={links}
-      >
+      <PageHeader title="Шаблон" description="Управление шаблоном" />
+      <AdminEntityMenu baseUrl={`/admin/templates/${templateId}`} links={links}>
         {children}
       </AdminEntityMenu>
     </>
