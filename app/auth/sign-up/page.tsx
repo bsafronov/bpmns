@@ -35,12 +35,16 @@ export default function Page() {
   const onSubmit = form.handleSubmit((data) => mutate(data));
 
   return (
-    <Card>
+    <Card className="min-w-[320px]">
       <CardHeader>
         <CardTitle>Регистрация</CardTitle>
       </CardHeader>
       <CardContent>
-        <FormController form={form} onSubmit={onSubmit}>
+        <FormController
+          form={form}
+          onSubmit={onSubmit}
+          submitText="Зарегистрироваться"
+        >
           <FieldController
             control={form.control}
             name="username"
