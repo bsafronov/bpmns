@@ -89,7 +89,7 @@ const DialogFooter = ({
     {...props}
   >
     <DialogPrimitive.Close asChild>
-      <Button variant={"ghost"}>Отмена</Button>
+      <Button variant={"outline"}>Отмена</Button>
     </DialogPrimitive.Close>
     {children}
   </div>

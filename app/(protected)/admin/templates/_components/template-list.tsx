@@ -1,12 +1,12 @@
-import { getProfessions } from "@/actions/get-professions";
+import getTemplates from "@/actions/get-templates";
 import AdminEntityItem from "@/components/admin-entity-item";
 
-export const ProfessionList = async () => {
-  const professions = await getProfessions();
+export const TemplateList = async () => {
+  const templates = await getTemplates();
 
   return (
     <div className="flex flex-col gap-2">
-      {professions.map(
+      {templates.map(
         ({
           createdAt,
           createdBy,
@@ -22,12 +22,12 @@ export const ProfessionList = async () => {
             createdAt={createdAt}
             createdBy={createdBy}
             name={name}
-            href={`/admin/professions/${id}`}
+            href={`/admin/templates/${id}`}
             updatedAt={updatedAt}
             updatedBy={updatedBy}
             published={published}
             description={description}
-          ></AdminEntityItem>
+          />
         ),
       )}
     </div>

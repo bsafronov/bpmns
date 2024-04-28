@@ -1,5 +1,6 @@
+import createProfession from "@/actions/create-profession";
+import CreateEntityDialog from "@/components/create-entity-dialog";
 import PageHeader from "@/components/ui/page-header";
-import CreateProfession from "./_components/create-profession";
 import { ProfessionList } from "./_components/profession-list";
 
 export default function Page() {
@@ -7,7 +8,12 @@ export default function Page() {
     <>
       <PageHeader title="Профессии" description="Управление профессиями" />
       <div className="mb-4 flex justify-end">
-        <CreateProfession />
+        <CreateEntityDialog
+          action={createProfession}
+          triggerTitle="Создать профессию"
+          title="Профессия"
+          description="Создание профессии"
+        />
       </div>
       <ProfessionList />
     </>

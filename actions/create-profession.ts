@@ -1,12 +1,11 @@
 "use server";
 
 import { db } from "@/db";
-import { CreateProfessionSchema } from "./schema";
 import { professions } from "@/db/schema/professions";
-import { adminAuth } from "../admin-auth";
 import { revalidatePath } from "next/cache";
+import { adminAuth } from "./admin-auth";
 
-export const createProfession = async ({ name }: CreateProfessionSchema) => {
+export default async function createProfession(name: string) {
   const user = await adminAuth();
 
   await db.insert(professions).values({
@@ -15,4 +14,4 @@ export const createProfession = async ({ name }: CreateProfessionSchema) => {
   });
 
   revalidatePath("/admin/professions");
-};
+}

@@ -1,6 +1,5 @@
 import AdminEntityMenu from "@/components/admin-entity-menu";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import Link from "@/components/ui/link";
 import PageHeader from "@/components/ui/page-header";
 import { NavLink } from "@/lib/types";
@@ -16,10 +15,6 @@ type Props = {
 
 function getLinks(id: ID): NavLink[] {
   return [
-    {
-      title: "Основная информация",
-      href: `/admin/professions/${id}`,
-    },
     {
       title: "Пользователи",
       href: `/admin/professions/${id}/users`,
@@ -42,7 +37,10 @@ export default function Layout({ children, params }: Props) {
         </Link>
       </Button>
       <PageHeader title="Профессия" description="Управление профессиями" />
-      <AdminEntityMenu links={getLinks(professionId)}>
+      <AdminEntityMenu
+        baseUrl={`/admin/professions/${professionId}`}
+        links={getLinks(professionId)}
+      >
         {children}
       </AdminEntityMenu>
     </>
