@@ -30,7 +30,11 @@ export default async function Page({ params }: Props) {
       </div>
       <EntityList>
         {fields.map((field) => (
-          <AdminEntityItem key={field.id} {...field} />
+          <AdminEntityItem
+            key={field.id}
+            href={`/admin/pt-fields/${field.id}`}
+            {...field}
+          />
         ))}
       </EntityList>
     </div>

@@ -1,16 +1,15 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import AlertDialogController from "./ui/alert-dialog-controller";
-import { Button } from "./ui/button";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import AlertDialogController from "./ui/alert-dialog-controller";
 import { LoadingButton } from "./ui/loading-button";
 
 type Props = {
   id: ID;
   action: (id: ID) => Promise<void>;
-  redirectUrl: string;
+  redirectUrl?: string;
 };
 
 export default function DeleteEntity({ action, id, redirectUrl }: Props) {

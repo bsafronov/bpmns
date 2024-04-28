@@ -1,5 +1,4 @@
 import { deletePtStage } from "@/actions/delete-pt-stage";
-import deleteTemplate from "@/actions/delete-template";
 import DeleteEntity from "@/components/delete-entity";
 import { parseIds } from "@/lib/utils";
 
@@ -13,11 +12,7 @@ export default function Page({ params }: Props) {
 
   return (
     <div>
-      <DeleteEntity
-        action={deletePtStage}
-        id={stageId}
-        redirectUrl="/admin/templates"
-      />
+      <DeleteEntity action={deletePtStage} id={stageId} />
     </div>
   );
 }
