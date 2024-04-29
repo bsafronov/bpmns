@@ -1,7 +1,6 @@
 import { getProfession } from "@/actions/get-profession";
 import { parseIds } from "@/lib/utils";
 import { notFound } from "next/navigation";
-import { UpdateProfessionForm } from "./_components/update-profession-form";
 import AdminEntityModerationInfo from "@/components/admin-entity-moderation-info";
 import UpdateEntityForm from "@/components/update-entity-form";
 import updateProfession from "@/actions/update-profession";

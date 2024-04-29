@@ -1,7 +1,8 @@
 "use server";
 
-import { getSession, lucia } from "@/lib/auth";
+import { lucia } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { getSession } from "./auth";
 
 export async function signOut() {
   const { session } = await getSession();

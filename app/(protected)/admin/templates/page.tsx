@@ -10,6 +10,7 @@ export default function Page() {
       <div className="mb-4 flex justify-end">
         <CreateEntityDialog
           action={createTemplate}
+          args={{}}
           title="Шаблон"
           description="Создание шаблона"
           successMessage="Шаблон успешно создан"

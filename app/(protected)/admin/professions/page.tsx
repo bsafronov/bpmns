@@ -10,6 +10,7 @@ export default function Page() {
       <div className="mb-4 flex justify-end">
         <CreateEntityDialog
           action={createProfession}
+          args={{}}
           triggerTitle="Создать профессию"
           title="Профессия"
           description="Создание профессии"
