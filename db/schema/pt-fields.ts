@@ -9,10 +9,12 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
-import { users } from "./users";
+import { enumerations } from "./enumerations";
 import { ptTemplates } from "./pt-templates";
+import { users } from "./users";
 
 export const ptFieldTypes = pgEnum("pt_field_type", [
+  "enum",
   "text",
   "rich_text",
   "number",
@@ -26,6 +28,7 @@ export const ptFields = pgTable("pt_fields", {
   ptTemplateId: integer("pt_template_id")
     .references(() => ptTemplates.id)
     .notNull(),
+  enumerationId: integer("enumeration_id").references(() => enumerations.id),
   name: varchar("name").notNull().unique(),
   description: text("description"),
   published: boolean("published").notNull().default(false),
@@ -45,7 +48,11 @@ export const ptFields = pgTable("pt_fields", {
   updatedById: integer("updated_by_id").references(() => users.id),
 });
 
-export const ptFieldsRelations = relations(ptFields, ({ one }) => ({
+export const ptFieldsRelations = relations(ptFields, ({ one, many }) => ({
+  enumeration: one(enumerations, {
+    fields: [ptFields.enumerationId],
+    references: [enumerations.id],
+  }),
   ptTemplate: one(ptTemplates, {
     fields: [ptFields.ptTemplateId],
     references: [ptTemplates.id],
