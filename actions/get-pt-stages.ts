@@ -7,6 +7,7 @@ export const getPtStages = async () => {
     with: {
       createdBy: true,
       updatedBy: true,
+      ptStagesToPtFields: true,
     },
   });
 };

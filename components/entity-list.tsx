@@ -14,7 +14,7 @@ export const EntityList = ({
 
   if (childrenArray.length === 0) {
     return (
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="my-4 text-center text-sm text-muted-foreground">
         {emptyMessage}
       </p>
     );
