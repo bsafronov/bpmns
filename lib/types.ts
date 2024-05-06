@@ -1,3 +1,4 @@
+import { ptFieldTypes } from "@/db/schema";
 import { LucideIcon } from "lucide-react";
 
 export type NavLink = {
@@ -12,3 +13,5 @@ export type EntityInitialValues = {
   description: string | null;
   published: boolean;
 };
+
+export type FieldType = (typeof ptFieldTypes.enumValues)[number];

@@ -38,7 +38,15 @@ export default async function Layout({ params, children }: Props) {
         title="Этап шаблона"
         description="Управление этапом шаблона"
       />
-      <AdminEntityMenu baseUrl={`/admin/pt-stages/${stageId}`}>
+      <AdminEntityMenu
+        baseUrl={`/admin/pt-stages/${stageId}`}
+        links={[
+          {
+            href: "/fields",
+            title: "Поля формы",
+          },
+        ]}
+      >
         {children}
       </AdminEntityMenu>
     </>

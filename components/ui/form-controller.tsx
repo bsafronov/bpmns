@@ -17,6 +17,7 @@ type Props<T extends FieldValues> = {
   submitText?: string;
   isLoading?: boolean;
   hasCancel?: boolean;
+  disableSubmit?: boolean;
 };
 
 export const FormController = <T extends FieldValues>({
@@ -29,6 +30,7 @@ export const FormController = <T extends FieldValues>({
   cancelText = "Отмена",
   hasCancel,
   isLoading,
+  disableSubmit,
 }: Props<T>) => {
   const handleCancel = () => onCancel?.() ?? form.reset();
 
